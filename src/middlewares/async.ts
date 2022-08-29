@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 // so asyncHandler is a higher order function returning an anonymous function.
 function asyncHandler(fn: Function) {
     return function (req: Request, res: Response, next: NextFunction) {
-        return Promise.resolve(fn(req, res, next)).catch(next);
+        return Promise.resolve(fn(req, res, next)).catch((err) => next(err.message));
     };
 };
 

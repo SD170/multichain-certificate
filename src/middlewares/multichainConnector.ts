@@ -9,7 +9,6 @@ export const multichainMW = asyncHandler(async (req: RequestExtended, res: Respo
         host: process.env.RPC_HOST,
         user: process.env.RPC_USER,
         pass: process.env.RPC_PASSWORD,
-        // rpcallowip:"0.0.0.0/0"
     });
     
     // console.log(multichain);
