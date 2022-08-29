@@ -1,10 +1,9 @@
 import { Request, Response, NextFunction, Router } from "express";
+import { homeRender } from '../controllers/home.controller';
 
 
 const router = Router();
 
-router.route("").get((req:Request, res:Response)=>{
-    res.render('home');
-});
+router.route("").get(homeRender);
 
 export default router;

@@ -13,6 +13,7 @@ dotenv.config({ path: __dirname + '/../config.env' });
 //route files
 import homeRoutes from "./routes/home.route";
 import fileUploadRoutes from "./routes/uploadFile.route";
+import { multichainMW } from './middlewares/multichainConnector';
 
 
 const app = express();
@@ -40,7 +41,8 @@ app.set('view engine', 'ejs');
 app.set("views", path.join(__dirname, "views"));
 
 
-
+// adding multichain middleware
+app.use(multichainMW);
 
 
 //mount routers
