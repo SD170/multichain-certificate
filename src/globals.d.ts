@@ -4,5 +4,6 @@ interface RequestExtended extends Request {
     files: any,
     file: any,
     fields: any,
-    multichain: any
+    multichain: any,
+    params:any
 }

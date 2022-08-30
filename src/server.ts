@@ -13,6 +13,9 @@ dotenv.config({ path: __dirname + '/../config.env' });
 //route files
 import homeRoutes from "./routes/home.route";
 import fileUploadRoutes from "./routes/uploadFile.route";
+import validateRoutes from "./routes/validate.route";
+
+// middlewares
 import { multichainMW } from './middlewares/multichainConnector';
 
 
@@ -47,6 +50,7 @@ app.use(multichainMW);
 
 //mount routers
 app.use('/uploadFiles', fileUploadRoutes);
+app.use('/validate', validateRoutes);
 app.use('/', homeRoutes);
 
 

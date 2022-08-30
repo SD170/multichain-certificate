@@ -4,9 +4,6 @@ import xlsx from 'node-xlsx';
 import { v4 as uuidv4 } from 'uuid';
 import { createCertificate } from '../utils/pdfCreator';
 
-interface excelData {
-
-}
 
 //  @desc       upload a file
 //  @route      POST /uploadFiles/excel
@@ -31,19 +28,19 @@ export const uploadFile = asyncHandler(async (req: RequestExtended, res: Respons
             json: info
         }
         // key for multichain
-        const key = uuidv4()
+        const streamKey = uuidv4();
 
         // publishing
         const txnID = await req.multichain.publish({ stream: process.env.MULTICHAIN_CERT_STREAM_TXN, key: 'cr7', data: streamData });
 
         // creating the certificates
-        await createCertificate(info.name, info.course, info.marks, txnID, key);
+        await createCertificate(info.name, info.course, info.marks, streamKey);
 
     }
 
 
 
     // redirecting to the homepage
-    res.redirect(`/?toast="file uploaded successfully"`)
+    res.redirect(`/?toast="file uploaded successfully"`);
 
 });

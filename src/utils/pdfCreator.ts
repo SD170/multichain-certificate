@@ -1,15 +1,15 @@
-import PDFDocument from "pdfkit";
+import PDFDocument, { underline } from "pdfkit";
 import fs from "fs";
 
 
-export const createCertificate = async (name: string, course: string, marks: string, txnID: string, key:string) => {
+export const createCertificate = async (name: string, course: string, marks: string, streamKey:string) => {
 
     const doc = new PDFDocument({
         layout: 'landscape',
         size: 'A4',
     });
 
-    doc.pipe(fs.createWriteStream(`./generated/${name}-${key}.pdf`));
+    doc.pipe(fs.createWriteStream(`./generated/${name}-${streamKey}.pdf`));
     // white background
     doc.rect(0, 0, doc.page.width, doc.page.height).fill('#fff');
 
@@ -84,10 +84,11 @@ export const createCertificate = async (name: string, course: string, marks: str
     doc
         .font('Helvetica')
         .fontSize(15)
-        .fill('#021c27')
+        .fill('#0e38a1')
         .text('check validity', {
             align: 'center',
-            link: `http://${process.env.RPC_HOST}:${process.env.PORT}/validate/certificate/${txnID}`
+            link: `http://${process.env.RPC_HOST}:${process.env.PORT}/validate/certificate/${streamKey}`,
+            underline:true
         }
         );
 
