@@ -8,7 +8,7 @@ import { createCertificate } from '../utils/pdfCreator';
 //  @desc       upload a file
 //  @route      POST /uploadFiles/excel
 //  @access     public
-export const uploadFile = asyncHandler(async (req: RequestExtended, res: Response, next: NextFunction) => {
+export const uploadFile = asyncHandler(async (req: RequestExtended, res: Response) => {
 
 
     // reading the uploaded excel files
@@ -31,7 +31,7 @@ export const uploadFile = asyncHandler(async (req: RequestExtended, res: Respons
         const streamKey = uuidv4();
 
         // publishing
-        const txnID = await req.multichain.publish({ stream: process.env.MULTICHAIN_CERT_STREAM_TXN, key: 'cr7', data: streamData });
+        const txnID = await req.multichain.publish({ stream: process.env.MULTICHAIN_CERT_STREAM_TXN, key: streamKey, data: streamData });
 
         // creating the certificates
         await createCertificate(info.name, info.course, info.marks, streamKey);
@@ -41,6 +41,6 @@ export const uploadFile = asyncHandler(async (req: RequestExtended, res: Respons
 
 
     // redirecting to the homepage
-    res.redirect(`/?toast="file uploaded successfully"`);
+    res.redirect(`/?toast=certificate-generated-successfully`);
 
 });

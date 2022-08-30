@@ -16,10 +16,12 @@ const MULTER_STORAGE = multer.diskStorage({
 
 export const namesExcelFile = multer({
     storage: MULTER_STORAGE,
-    // fileFilter: function (req, file, callback) {
-    //     let ext = path.extname(file.originalname)
-
-    //     callback(null, true);
-    // }
+    fileFilter: function (req, file, callback) {
+        var ext = path.extname(file.originalname);
+        if(ext !== '.xlsx') {
+            return callback(new Error('only excel files are allowed'))
+        }
+        callback(null, true)
+    },
 }).single('namesFile');
 
