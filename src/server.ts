@@ -41,7 +41,7 @@ app.use('/js', express.static(__dirname + 'public/js'));
 // set template engine
 app.set('view engine', 'ejs');
 // also setting the view
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "/../views"));
 
 
 // adding multichain middleware

@@ -9,8 +9,6 @@ import { createCertificate } from '../utils/pdfCreator';
 //  @access     public
 export const homeRender = asyncHandler(async (req: Request, res: Response) => {
 
-    // createCertificate("Saswata D.","Game", "100");
-    console.log(req.query.toast);
     res.render('home', {
         toast: req.query.toast?req.query.toast:null
     });
