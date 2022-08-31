@@ -43,6 +43,7 @@ From the root folder, start the project by running:
 - [node.js](https://nodejs.org/) - Runtive env
 - [multichain-node](https://github.com/scoin/multichain-node) - A wrapper for Multichain's JSON RPC api
 - [multer](https://www.npmjs.com/package/multer) and [pdfkit](https://www.npmjs.com/package/pdfkit) - For uploading and generating required files
+- [EJS](https://ejs.co/) - For templating html
 
 ---
 
